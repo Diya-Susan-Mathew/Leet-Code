@@ -1,0 +1,79 @@
+Problem Name: Contains Duplicate
+
+LeetCode No: 217
+
+Difficulty: Easy
+
+Pattern Used:
+HashSet
+
+Problem Statement:
+Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
+
+--------------------------------------------------
+
+Brute Force Approach
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        for(int i=0;i<nums.length;i++){
+            int element = nums[i];
+            for(int j=i+1;j<nums.length;j++){
+                if(element==nums[j]){
+                    return true;
+                }
+            }
+        }
+    return false;
+    }
+}
+
+Idea:
+Compare each element with every other element.
+
+Time Complexity: O(n²)
+Space Complexity: O(1)
+
+Why Time Limit Exceeded Error?
+For an array of size n, each element may be compared with nearly all remaining elements, resulting in n² operations.
+
+--------------------------------------------------
+
+Optimal Approach
+
+Pattern:
+HashSet
+
+Code:
+(Java code in Prob217.java)
+
+Idea:
+While traversing the array:
+1. Check if the element already exists in the HashSet.
+2. If yes, return true.
+3. Otherwise, add it to the HashSet.
+4. If traversal completes, return false.
+
+
+Time Complexity: O(n)
+Space Complexity: O(n)
+
+--------------------------------------------------
+
+Key Observation
+
+A HashSet stores unique elements only.
+If an element is already present in the set, then a duplicate exists.
+
+--------------------------------------------------
+
+Mistakes / Learning
+
+- Brute force leads to O(n²) complexity.
+- HashSet provides O(1) average lookup and insertion.
+- Useful pattern whenever the problem asks:
+  "Have I seen this element before?"
+
+--------------------------------------------------
+
+Pattern Category:
+Hashing

@@ -1,0 +1,166 @@
+Problem Name: Length of Last Word
+
+LeetCode No: 58
+
+Difficulty: Easy
+
+Pattern Used:
+Reverse Traversal / String Processing
+
+Problem Statement:
+Given a string s consisting of words and spaces, return the length of the last word in the string.
+
+A word is a maximal substring consisting of non-space characters only.
+
+Example:
+
+Input: s = "Hello World"
+Output: 5
+
+Explanation:
+The last word is "World", which has length 5.
+
+--------------------------------------------------
+
+Brute Force Approach
+
+Idea:
+1. Split the string into words using spaces as delimiters.
+2. Access the last word in the resulting array.
+3. Return its length.
+
+Code:
+(Java code)
+
+Time Complexity: O(n)
+Space Complexity: O(n)
+
+Why is Space Complexity O(n)?
+
+The split() method:
+- Creates an array of words.
+- Creates separate string objects for each word.
+- Uses regex processing internally.
+
+--------------------------------------------------
+
+Brute Force Solution
+
+class Solution {
+    public int lengthOfLastWord(String s){
+        String[] words = s.split("\\s+");
+        int length = words.length;
+        int wordlength = words[length - 1].length();
+        return wordlength;
+    }
+}
+
+--------------------------------------------------
+
+Optimal Approach
+
+Pattern:
+Reverse Traversal
+
+Idea:
+1. Start from the end of the string.
+2. Ignore all trailing spaces.
+3. Count characters until a space or the beginning of the string is reached.
+4. Return the count.
+
+Code:
+(Java code in Problem58.java)
+
+Time Complexity: O(n)
+Space Complexity: O(1)
+
+--------------------------------------------------
+
+Key Observation
+
+We only need information about the last word.
+
+There is no need to:
+- Split the entire string.
+- Store all words.
+- Use extra memory.
+
+Scanning from the end directly gives the answer.
+
+--------------------------------------------------
+
+Dry Run
+
+Input:
+s = "   fly me   to   the moon  "
+
+Step 1:
+Start from the end.
+
+"   fly me   to   the moon  "
+                         ^^
+
+Skip trailing spaces.
+
+Step 2:
+Count characters.
+
+moon
+
+m -> 1
+o -> 2
+o -> 3
+n -> 4
+
+Step 3:
+Encounter space.
+
+Return 4.
+
+--------------------------------------------------
+
+Mistakes / Learning
+
+- split() looks simple but creates extra objects and uses regex.
+- Many string problems can be solved without creating new strings.
+- Traversing from the end is often useful when only the last portion of a string matters.
+- Always consider whether the entire string needs processing.
+
+--------------------------------------------------
+
+Why is the Optimal Solution Better?
+
+Brute Force:
+- Creates String array.
+- Creates multiple String objects.
+- Uses regex processing.
+
+Optimal:
+- Uses only one integer pointer.
+- No extra arrays.
+- No extra strings.
+- Constant extra space.
+
+--------------------------------------------------
+
+Related Problems
+
+1. Reverse Words in a String (151)
+2. Reverse String (344)
+3. Valid Palindrome (125)
+4. Find the Index of the First Occurrence in a String (28)
+5. Reverse String II (541)
+
+Pattern Category:
+Strings / Reverse Traversal
+
+--------------------------------------------------
+
+Interview Takeaway
+
+When a problem asks about the "last" element, "last word", or "trailing" characters:
+
+Think:
+"Can I start from the end instead of processing the entire string?"
+
+This often reduces memory usage and simplifies the solution.

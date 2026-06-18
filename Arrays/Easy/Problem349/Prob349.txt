@@ -1,0 +1,120 @@
+Problem Name: Intersection of Two Arrays
+
+LeetCode No: 349
+
+Difficulty: Easy
+
+Pattern Used:
+HashSet
+
+Problem Statement:
+Given two integer arrays nums1 and nums2, return an array of their intersection.
+Each element in the result must be unique, and you may return the result in any order.
+
+Example:
+Input: nums1 = [1,2,2,1], nums2 = [2,2]
+Output: [2]
+
+--------------------------------------------------
+
+Brute Force Approach
+
+Idea:
+Compare every element of nums1 with every element of nums2.
+Store matching elements in a collection while ensuring duplicates are not added.
+
+Pseudo Logic:
+1. Traverse nums1.
+2. For each element, traverse nums2.
+3. If elements match, check whether it is already in the result.
+4. If not present, add it.
+
+Time Complexity: O(n × m)
+Space Complexity: O(k)
+
+where:
+n = size of nums1
+m = size of nums2
+k = number of unique common elements
+
+--------------------------------------------------
+
+Optimal Approach
+
+Pattern:
+HashSet
+
+Idea:
+1. Store all elements of nums1 in a HashSet.
+2. Traverse nums2.
+3. If an element exists in the HashSet, add it to another HashSet (intersection set).
+4. Convert the intersection set to an array.
+
+Code:
+(Java code in Problem349.java)
+
+Time Complexity: O(n + m)
+Space Complexity: O(n + k)
+
+where:
+n = size of nums1
+m = size of nums2
+k = size of intersection
+
+--------------------------------------------------
+
+Key Observation
+
+We only need unique common elements.
+
+HashSet automatically:
+- Stores unique values.
+- Provides O(1) average lookup time.
+
+Instead of comparing every pair of elements, we can quickly check whether an element from nums2 exists in nums1 using a HashSet.
+
+--------------------------------------------------
+
+Dry Run
+
+nums1 = [1,2,2,1]
+nums2 = [2,2]
+
+Step 1:
+set = {1,2}
+
+Step 2:
+Check first 2:
+2 exists in set
+set2 = {2}
+
+Check second 2:
+2 exists in set
+set2 remains {2}
+
+Step 3:
+Convert set2 to array
+
+Result:
+[2]
+
+--------------------------------------------------
+
+Mistakes / Learning
+
+- Remember that the result should contain only unique elements.
+- Using an ArrayList may introduce duplicates unless checked manually.
+- HashSet automatically handles uniqueness.
+- Converting a HashSet to an int[] requires manual iteration.
+
+--------------------------------------------------
+
+Why Two HashSets?
+
+set:
+Stores all elements of nums1 for fast lookup.
+
+set2:
+Stores only the intersection elements while maintaining uniqueness.
+
+--------------------------------------------------

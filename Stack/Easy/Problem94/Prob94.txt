@@ -1,0 +1,46 @@
+Problem Name : Binary Tree Inorder traversal
+Level : Easy
+
+
+Given the root of a binary tree, return the inorder traversal of its nodes' values. 
+
+Example 1:
+
+Input: root = [1,null,2,3]
+
+Output: [1,3,2]
+
+Why is the following not recommended ? 
+When you make ans a class variable, it belongs to the Solution object itself. It stays alive as long as the object stays alive.
+Imagine another part of the program (or an automated testing system like LeetCode) creates one Solution object and uses it to test multiple different trees:
+Solution solver = new Solution();
+
+TreeNode tree1 = // Tree with 1, 2, 3
+TreeNode tree2 = // Tree with 4, 5, 6
+
+System.out.println(solver.inorderTraversal(tree1)); 
+// Output: [1, 2, 3] (Looks good!)
+
+System.out.println(solver.inorderTraversal(tree2)); 
+// Output: [1, 2, 3, 4, 5, 6] (Wait, what?!)
+Because ans was declared at the top of the class, it never cleared out its old data. When you ran the second tree, it just kept adding numbers to the end of the first tree's list.
+To fix this in your version, you would have to remember to reset the list every time the main method is called:
+
+
+class Solution {
+
+    List<Integer> ans = new ArrayList<>();
+
+    public List<Integer> inorderTraversal(TreeNode root) {
+        inorder(root);
+        return ans;
+    }
+
+    private void inorder(TreeNode root) {
+        if (root == null) return;
+
+        inorder(root.left);
+        ans.add(root.val);
+        inorder(root.right);
+    }
+}

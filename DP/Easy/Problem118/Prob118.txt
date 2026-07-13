@@ -1,0 +1,42 @@
+Problem Name : Pascal's Triangle
+
+Given an integer numRows, return the first numRows of Pascal's triangle.
+
+In Pascal's triangle, each number is the sum of the two numbers directly above it as shown:
+
+
+ 
+
+Example 1:
+
+Input: numRows = 5
+Output: [[1],[1,1],[1,2,1],[1,3,3,1],[1,4,6,4,1]]
+
+Example 2:
+
+Input: numRows = 1
+Output: [[1]]
+
+Time Complexity: O(n 
+2
+ )
+Think about how many times the inner for loop runs as the triangle grows:
+Row 1 has 1 element.
+Row 2 has 2 elements.
+Row 3 has 3 elements.
+...
+Row n has n elements.
+To find the total number of operations, we add them all up: 1+2+3+...+n.
+In mathematics, the sum of the first n integers is given by the formula  
+n(n+1)/2 .
+When determining Big-O time complexity, we drop the constants (the divided by 2) and the non-dominant terms (the +n), which leaves us strictly with O(n^2). 
+Every addition operation inside that loop is O(1), so the time strictly scales with the total number of elements.
+
+Space Complexity: O(n^2)
+Space complexity measures how much memory your program needs to run.
+Because we are asked to return the entire triangle, we have to store every single number we generate inside our List<List<Integer>>.
+Since there are  n(n+1)​/2 total numbers in a Pascal's Triangle of n rows, the space required to store the output is O(n^2).
+
+Interview Pro-Tip: Interviewers will sometimes try to trick you by asking for the Auxiliary Space of this algorithm. 
+Auxiliary space is the extra, temporary memory your algorithm uses excluding the space needed to hold the final output. 
+Because we are only creating lists to directly store the final answer and use just a few integer variables for our loops, the auxiliary space is actually O(1) (constant space).

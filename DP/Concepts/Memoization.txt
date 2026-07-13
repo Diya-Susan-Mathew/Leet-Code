@@ -1,0 +1,43 @@
+import java.util.Arrays;
+
+public class Memoization {
+
+    // This array is our "memo pad". We declare it at the class level 
+    // so our recursive function can access it during every call.
+    private static long[] memo;
+
+    public static long fibonacci(int n) {
+        // 1. Base cases: F(0) is 0, F(1) is 1.
+        if (n <= 1) {
+            return n;
+        }
+
+        // 2. CHECK THE MEMO PAD FIRST!
+        // If the value at index 'n' is not -1, it means we already figured it out.
+        if (memo[n] != -1) {
+            return memo[n]; // Instantly return the saved answer.
+        }
+
+        // 3. If it's not in the memo pad, do the standard recursive work.
+        long result = fibonacci(n - 1) + fibonacci(n - 2);
+
+        // 4. SAVE the result to the memo pad before returning it!
+        memo[n] = result;
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        int n = 50; 
+        
+        // Initialize the memo array to be size n + 1 (so it goes from index 0 to n)
+        memo = new long[n + 1];
+        
+        // Fill the memo array with -1. 
+        // We use -1 to represent "empty/uncalculated" because 
+        // actual Fibonacci numbers are always 0 or positive.
+        Arrays.fill(memo, -1);
+
+        System.out.println("Fibonacci of " + n + " is: " + fibonacci(n));
+    }
+}

@@ -1,0 +1,31 @@
+Problem Name : Coin Change 
+
+You are given an integer array coins representing coins of different denominations and an integer amount representing a total amount of money.
+
+Return the fewest number of coins that you need to make up that amount. If that amount of money cannot be made up by any combination of the coins, return -1.
+
+You may assume that you have an infinite number of each kind of coin.
+
+ 
+
+Example 1:
+
+Input: coins = [1,2,5], amount = 11
+Output: 3
+Explanation: 11 = 5 + 5 + 1
+Example 2:
+
+Input: coins = [2], amount = 3
+Output: -1
+
+The problem is solved using Dynamic Programming (Bottom-Up approach).
+We create a dp array where dp[i] represents the minimum number of coins required to make the amount i. 
+Initially, all values are set to a large number (amount + 1) to represent that the amount is not yet reachable, except dp[0] = 0 since zero coins are needed to make amount 0. 
+Then, for every amount from 1 to the target amount, we try every available coin. 
+If the coin can contribute to the current amount, we update dp[i] by taking the minimum of its current value and dp[i - coin] + 1.
+This means we use the best solution for the smaller amount (i - coin) and add one more coin. 
+After filling the dp array, dp[amount] contains the minimum number of coins required. 
+If it is still greater than amount, it means no combination of coins can form the target amount, so we return -1.
+
+Time Complexity: O(amount × number_of_coins)
+Space Complexity: O(amount)

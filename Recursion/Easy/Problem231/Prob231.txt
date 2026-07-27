@@ -1,0 +1,54 @@
+-----------------
+Repeated Division
+----------------- 
+
+class Solution {
+    public boolean isPowerOfTwo(int n) {
+        if (n <= 0) return false;
+
+        while (n % 2 == 0) {
+            n /= 2;
+        }
+
+        return n == 1;
+    }
+}
+Time Complexity : O(logn)
+Space Complexity : O(1)
+
+----------------
+Bit Manipulation 
+----------------
+
+class Solution {
+    public boolean isPowerOfTwo(int n) {
+        return n > 0 && (n & (n - 1)) == 0;
+    }
+}
+Time Complexity : O(1)
+Space Complexity : O(1)
+
+---------
+Recursion
+---------
+
+class Solution {
+    public boolean isPowerOfTwo(int n) {
+        if (n <= 0) {
+            return false;
+        }
+
+        if (n == 1) {
+            return true;
+        }
+
+        if (n % 2 != 0) {
+            return false;
+        }
+
+        return isPowerOfTwo(n / 2);
+    }
+}
+
+Time Complexity = Count of Operations: The algorithm takes (O(log n)) time because it makes roughly (log_2(n)) recursive calls.
+Space Complexity = Peak Stack Depth: Because each of those (log_2(n)) calls must exist in memory simultaneously while waiting for the final base case (n=1) to trigger, the stack grows to a maximum height of (log_2(n)) frames.

@@ -7,7 +7,7 @@ Given an integer array `nums`, find the length of the shortest contiguous subarr
 The **degree** of an array is the highest frequency of any element in it.
 
 ## Java Solution
-ßß
+ßß                                  -
 ```java
 import java.util.HashMap;
 import java.util.Map;
